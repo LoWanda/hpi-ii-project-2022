@@ -1,24 +1,26 @@
 import logging
+import json 
 
 from confluent_kafka import SerializingProducer
 from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 from confluent_kafka.serialization import StringSerializer
 
-from build.gen.bakdata.corporate.v1 import corporate_pb2
-from build.gen.bakdata.corporate.v1.corporate_pb2 import Corporate
-from rb_crawler.constant import SCHEMA_REGISTRY_URL, BOOTSTRAP_SERVER, TOPIC
+from build.gen.dpma import patent_pb2
+from build.gen.dpma.patent_pb2 import Patent
+from patent_crawler.items import PatentItem
+from dpma_crawler.constant import SCHEMA_REGISTRY_URL, BOOTSTRAP_SERVER, TOPIC
 
 log = logging.getLogger(__name__)
 
 
-class RbProducer:
+class DpmaProducer:
     def __init__(self):
         schema_registry_conf = {"url": SCHEMA_REGISTRY_URL}
         schema_registry_client = SchemaRegistryClient(schema_registry_conf)
-
+         
         protobuf_serializer = ProtobufSerializer(
-            corporate_pb2.Corporate, schema_registry_client, {"use.deprecated.format": True}
+            patent_pb2.Patent, schema_registry_client, {"use.deprecated.format": True}
         )
 
         producer_conf = {
@@ -29,9 +31,10 @@ class RbProducer:
 
         self.producer = SerializingProducer(producer_conf)
 
-    def produce_to_topic(self, corporate: Corporate):
+    def produce_to_topic(self, patent: Patent):
+        #json.loads(patent)["patent_id"]
         self.producer.produce(
-            topic=TOPIC, partition=-1, key=str(corporate.id), value=corporate, on_delivery=self.delivery_report
+            topic=TOPIC, partition=-1, key=str(patent.id), value=patent, on_delivery=self.delivery_report
         )
 
         # It is a naive approach to flush after each produce this can be optimised

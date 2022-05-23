@@ -7,8 +7,8 @@ message Patent {
   string applicant = 2;
   string application_date = 3;
   string title = 4;
-  string inventor = 5;
-  string class = 6;
+  repeated string inventor = 5;
+  string ipc_class = 6;
   string publication_date = 7;
-  string legal_agents = 8;
+  repeated string legal_agents = 8;
 }

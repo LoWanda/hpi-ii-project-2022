@@ -3,6 +3,12 @@
 This repository provides a code base for the information integration course in the summer semester of 2022. Below you
 can find the documentation for setting up the project.
 
+## DPMA Crawling
+
+Generate the Python code for the model class from the proto files by running the [`generate-proto.sh`](./generate-proto.sh) script.
+After starting the docker container as described below, configure Kafka Connect to use the Elasticsearch sink connector by using this [configuration file](./connect/patent-sink.json). You can start crawling by running `scrapy crawl patents` in the ./patent_crawler directory.
+The scrapy spider is configured to stop after 5000 requests as this is the daily limit of requests given by DPMA. The code prints the last company that the code was trying to crawl the patents for. 
+
 ## Prerequisites
 
 - Install [Poetry](https://python-poetry.org/docs/#installation)

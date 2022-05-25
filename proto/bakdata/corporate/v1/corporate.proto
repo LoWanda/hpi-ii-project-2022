@@ -7,10 +7,15 @@ message Corporate {
   uint32 rb_id = 2;
   string state = 3;
   string reference_id = 4;
-  string event_date = 5;
-  string event_type = 6;
-  Status status = 7;
-  string information = 8;
+  string name = 5;
+  string event_date = 6;
+  string event_type = 7;
+  Status status = 8;
+  string address = 9;
+  string industry_description = 10;
+  string capital = 11;
+  repeated string ceo = 12;
+  string information = 13;
 }
 
 enum Status {

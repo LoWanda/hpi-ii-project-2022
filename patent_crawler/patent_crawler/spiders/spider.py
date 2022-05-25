@@ -9,6 +9,9 @@ from patent_crawler.items import PatentItem
 from pydispatch import dispatcher
 
 from scrapy import signals
+import pandas as pd
+
+from datetime import datetime
 
 
 class PatentSpider(scrapy.Spider):
@@ -22,16 +25,22 @@ class PatentSpider(scrapy.Spider):
         dispatcher.connect(self.spider_closed, signals.spider_closed)
 
     def spider_closed(self, spider):
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        print("Current Time =", current_time)
         print("Last Company: ", self.company)
 
     def start_requests(self):
+        df = pd.read_csv("patent_crawler/spiders/companies_bw.csv")
+        comp = df["companies"].tolist()[1:]
+        self.companies = [" ".join(d.split()[:1]) for d in comp]
         for company in self.companies:
             self.company = company
             url = f"https://register.dpma.de/DPMAregister/pat/experte?queryString=INH='{company}' and ST=anhaengig-in-kraft and SART=patent"
             yield scrapy.Request(url=url, callback=self.parse, cookies={"pat.checkedList": COOKIE}, dont_filter=True)
 
     def parse(self, response):
-        if "Die Datenbankabfrage lieferte keine Treffer" in response.text:
+        if ("Die Datenbankabfrage lieferte keine Treffer" in response.text) or ("Es sind folgende Fehler aufgetreten" in response.text):
             total_num = 0
             yield
         elif "Trefferliste zu lang" in response.text:
@@ -66,7 +75,8 @@ class PatentSpider(scrapy.Spider):
             patent.publication_date = row.css("td[data-th*=veröffentlichung] *::text").get()
             patent.legal_agents.extend(row.css("td[data-th*=Vertreter] *::text").getall())
             patent.num_patents_company = self.total
-            self.producer.produce_to_topic(patent=patent)
+            print(patent)
+            # self.producer.produce_to_topic(patent=patent)
 
         if response.css("#blaetter_eins_vor::attr(disabled)").get() != "disabled":
             yield scrapy.FormRequest.from_response(

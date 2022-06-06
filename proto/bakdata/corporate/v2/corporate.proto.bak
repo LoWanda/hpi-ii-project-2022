@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package bakdata.corporate.v2;
+
+message Corporate {
+  string id = 1;
+  string reference_id = 2;
+  string name = 3;
+  string street = 4;
+  string postal_code = 5;
+  string city = 6;
+  string industry_description = 5;
+  string capital = 6;
+  repeated string ceo = 7;
+}

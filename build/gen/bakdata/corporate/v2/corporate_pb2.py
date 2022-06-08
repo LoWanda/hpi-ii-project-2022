@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='bakdata.corporate.v2',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n$bakdata/corporate/v2/corporate.proto\x12\x14\x62\x61kdata.corporate.v2\"\xaa\x01\n\tCorporate\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x0creference_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0e\n\x06street\x18\x04 \x01(\t\x12\x13\n\x0bpostal_code\x18\x05 \x01(\t\x12\x0c\n\x04\x63ity\x18\x06 \x01(\t\x12\x1c\n\x14industry_description\x18\x07 \x01(\t\x12\x0f\n\x07\x63\x61pital\x18\x08 \x01(\t\x12\x0b\n\x03\x63\x65o\x18\t \x03(\tb\x06proto3')
+  serialized_pb=_b('\n$bakdata/corporate/v2/corporate.proto\x12\x14\x62\x61kdata.corporate.v2\"\xbf\x01\n\tCorporate\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x0creference_id\x18\x02 \x01(\t\x12\x13\n\x0blocal_court\x18\x03 \x01(\t\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x0e\n\x06street\x18\x05 \x01(\t\x12\x13\n\x0bpostal_code\x18\x06 \x01(\t\x12\x0c\n\x04\x63ity\x18\x07 \x01(\t\x12\x1c\n\x14industry_description\x18\x08 \x01(\t\x12\x0f\n\x07\x63\x61pital\x18\t \x01(\t\x12\x0b\n\x03\x63\x65o\x18\n \x03(\tb\x06proto3')
 )
 
 
@@ -47,50 +47,57 @@ _CORPORATE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='name', full_name='bakdata.corporate.v2.Corporate.name', index=2,
+      name='local_court', full_name='bakdata.corporate.v2.Corporate.local_court', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='street', full_name='bakdata.corporate.v2.Corporate.street', index=3,
+      name='name', full_name='bakdata.corporate.v2.Corporate.name', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='postal_code', full_name='bakdata.corporate.v2.Corporate.postal_code', index=4,
+      name='street', full_name='bakdata.corporate.v2.Corporate.street', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='city', full_name='bakdata.corporate.v2.Corporate.city', index=5,
+      name='postal_code', full_name='bakdata.corporate.v2.Corporate.postal_code', index=5,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='industry_description', full_name='bakdata.corporate.v2.Corporate.industry_description', index=6,
+      name='city', full_name='bakdata.corporate.v2.Corporate.city', index=6,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='capital', full_name='bakdata.corporate.v2.Corporate.capital', index=7,
+      name='industry_description', full_name='bakdata.corporate.v2.Corporate.industry_description', index=7,
       number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='ceo', full_name='bakdata.corporate.v2.Corporate.ceo', index=8,
-      number=9, type=9, cpp_type=9, label=3,
+      name='capital', full_name='bakdata.corporate.v2.Corporate.capital', index=8,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='ceo', full_name='bakdata.corporate.v2.Corporate.ceo', index=9,
+      number=10, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -108,7 +115,7 @@ _CORPORATE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=63,
-  serialized_end=233,
+  serialized_end=254,
 )
 
 DESCRIPTOR.message_types_by_name['Corporate'] = _CORPORATE

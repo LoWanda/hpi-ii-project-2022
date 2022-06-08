@@ -5,11 +5,12 @@ package bakdata.corporate.v2;
 message Corporate {
   string id = 1;
   string reference_id = 2;
-  string name = 3;
-  string street = 4;
-  string postal_code = 5;
-  string city = 6;
-  string industry_description = 7;
-  string capital = 8;
-  repeated string ceo = 9;
+  string local_court = 3;
+  string name = 4;
+  string street = 5;
+  string postal_code = 6;
+  string city = 7;
+  string industry_description = 8;
+  string capital = 9;
+  repeated string ceo = 10;
 }

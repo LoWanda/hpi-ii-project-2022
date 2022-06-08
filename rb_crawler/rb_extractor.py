@@ -36,13 +36,14 @@ class RbExtractor:
                 announcement.state = self.state
                 corporate.reference_id = self.extract_company_reference_number(selector)
                 announcement.reference_id = self.extract_company_reference_number(selector)
+                corporate.local_court = self.extract_company_local_court(selector)
                 event_type = selector.xpath("/html/body/font/table/tr[3]/td/text()").get()
                 announcement.event_date = selector.xpath("/html/body/font/table/tr[4]/td/text()").get()
                 corporate.id = f"{self.state}_{self.rb_id}"
                 announcement.id = f"{self.rb_id}_{self.state}"
                 raw_text: str = selector.xpath("/html/body/font/table/tr[6]/td/text()").get()
-                self.handle_corporates(corporate, raw_text)
-                self.handle_events(announcement, event_type, raw_text)
+                #self.handle_corporates(corporate, raw_text)
+                self.handle_events(corporate, announcement, event_type, raw_text)
                 self.rb_id = self.rb_id + 1
                 log.debug(corporate)
             except Exception as ex:
@@ -62,13 +63,19 @@ class RbExtractor:
     def extract_company_reference_number(selector: Selector) -> str:
         return ((selector.xpath("/html/body/font/table/tr[1]/td/nobr/u/text()").get()).split(": ")[1]).strip()
 
-    def handle_events(self, announcement, event_type, raw_text):
+    def extract_company_local_court(self, selector: Selector) -> str:
+        return (re.search('gericht\s(.*?)\sAkten', selector.xpath("/html/body/font/table/tr[1]/td/nobr/u/text()").get()).group(1))
+
+    def handle_events(self, corporate, announcement, event_type, raw_text):
         if event_type == "Neueintragungen":
             self.handle_new_entries(announcement, raw_text)
+            self.handle_corporates(corporate, raw_text)
         elif event_type == "Veränderungen":
             self.handle_changes(announcement, raw_text)
+            self.handle_corporates(corporate, raw_text)
         elif event_type == "Löschungen":
             self.handle_deletes(announcement)
+            self.handle_corporates(corporate, raw_text)
             
     # extract information from raw_text
     # needs modifications for other states than bw

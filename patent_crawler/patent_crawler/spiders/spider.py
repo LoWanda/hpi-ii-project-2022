@@ -23,7 +23,7 @@ class PatentSpider(scrapy.Spider):
         self.initial_date = datetime.today() - relativedelta(days=100)
         self.date = self.initial_date
         self.total = 0
-        #self.producer = DpmaProducer()
+        self.producer = DpmaProducer()
         self.companies = []
         companies_file = open('../exports/corporate-entries2.json')
         companies_string = companies_file.read()

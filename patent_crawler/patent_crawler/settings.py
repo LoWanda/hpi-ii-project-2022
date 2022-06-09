@@ -12,7 +12,7 @@ BOT_NAME = 'patent_crawler'
 SPIDER_MODULES = ['patent_crawler.spiders']
 NEWSPIDER_MODULE = 'patent_crawler.spiders'
 
-CLOSESPIDER_PAGECOUNT = 4900
+CLOSESPIDER_PAGECOUNT = 500
 CONCURRENT_REQUESTS = 1
 
 

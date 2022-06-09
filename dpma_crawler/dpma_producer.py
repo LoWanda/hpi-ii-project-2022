@@ -6,8 +6,8 @@ from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.protobuf import ProtobufSerializer
 from confluent_kafka.serialization import StringSerializer
 
-from build.gen.dpma import patent_pb2
-from build.gen.dpma.patent_pb2 import Patent
+from build.gen.dpma.v2 import patent_pb2
+from build.gen.dpma.v2.patent_pb2 import Patent
 from patent_crawler.items import PatentItem
 from dpma_crawler.constant import SCHEMA_REGISTRY_URL, BOOTSTRAP_SERVER, TOPIC
 

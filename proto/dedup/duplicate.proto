@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package dedup;
+
+message Duplicate {
+  string id = 1;
+  string dedup_id = 2;
+}

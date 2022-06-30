@@ -10,7 +10,6 @@ producer = RbProducerD()
 
 # 1. get json
 # iterate over entries
-# 
 
 d = defaultdict(list)
 companies = []
@@ -36,8 +35,6 @@ for local_court, value in d.items():
 			next_id = next_company["reference_id"]
 			# similarity measure based on tokens compared to all following companies in the array
 			similarity = fuzz.token_sort_ratio(id, next_id)
-			#duplicates[company["id"]] = dedup_counter
-			#duplicates[next_company["id"]] = dedup_counter
 			if similarity >= threshold:
 				# transitivity
 				if company["id"] not in duplicates and next_company["id"] not in duplicates:
@@ -55,12 +52,7 @@ for id, dedup in duplicates.items():
 	duplicate = Duplicate()
 	duplicate.id = id
 	duplicate.dedup_id = dedup
-	producer.produce_to_topic(duplicate = duplicate)
-		
-# look at reference id: split to pre part and number
-# WHICH ONE???? Levenshtein with swap? Fuzzywuzzy? 
-
-# if duplicate: create dedup entry => config 
-# Use UPSERT, write.method=upsert, update schema
+	producer.produce_to_topic(duplicate = duplicate)		
+	# Use UPSERT, write.method=upsert, update schema
 
 

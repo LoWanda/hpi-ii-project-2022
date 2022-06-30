@@ -4,5 +4,5 @@ package dedup;
 
 message Duplicate {
   string id = 1;
-  string dedup_id = 2;
+  int32 dedup_id = 2;
 }

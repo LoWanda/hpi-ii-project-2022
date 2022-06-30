@@ -31,7 +31,7 @@ class RbProducerD:
 
     def produce_to_topic(self, duplicate: Duplicate):
         self.producer.produce(
-            topic=TOPIC, partition=-1, key=str(duplicate.id), value=duplicate, on_delivery=self.delivery_report
+            topic=TOPIC3, partition=-1, key=str(duplicate.id), value=duplicate, on_delivery=self.delivery_report
         )
 
         # It is a naive approach to flush after each produce this can be optimised

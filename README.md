@@ -7,6 +7,10 @@ can find the documentation for setting up the project.
 
 To start the timeline application, step into `/event-visualization` and install the dependencies with `npm install`. With `npm start` you can start the application, which is now available at `localhost:3000`.
 
+To access the kibana dashboard, you need to install elasticsearch and kibana. You can either do it with [Docker] (https://www.elastic.co/guide/en/kibana/current/docker.html) or by downloading and unpacking the .zip packages for [elaticsearch] (https://www.elastic.co/guide/en/elasticsearch/reference/current/zip-windows.html) and [kibana] (https://www.elastic.co/guide/en/kibana/current/windows.html).
+After the installation, start elasticsearch to generate a password and enrollment token to connect kibana to elasticsearch. These values are shown only when you start Elasticsearch for the first time. You need to use these to enroll Kibana with your Elasticsearch cluster and log in.
+Start Kibana, follow the unique link in your terminal, paste the enrollment token and log in to Kibana as the elastic user with the password that was generated when you started Elasticsearch. The project dashboard can then be accessed via this link: http://localhost:5601/app/r/s/opL0N.
+
 ## DPMA Crawling
 
 Generate the Python code for the model class from the proto files by running the [`generate-proto.sh`](./generate-proto.sh) script.

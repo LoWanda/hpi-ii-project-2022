@@ -3,6 +3,10 @@
 This repository provides a code base for the information integration course in the summer semester of 2022. Below you
 can find the documentation for setting up the project.
 
+## Visualizations
+
+To start the timeline application, step into `/event-visualization` and install the dependencies with `npm install`. With `npm start` you can start the application, which is now available at `localhost:3000`.
+
 ## DPMA Crawling
 
 Generate the Python code for the model class from the proto files by running the [`generate-proto.sh`](./generate-proto.sh) script.
